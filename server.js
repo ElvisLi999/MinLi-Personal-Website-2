@@ -9,7 +9,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const app_1 = __importDefault(require("./Server/Config/app"));
 const debug_1 = __importDefault(require("debug"));
-(0, debug_1.default)('min-website:server');
+(0, debug_1.default)('min-website-2:server');
 const http_1 = __importDefault(require("http"));
 /**
  * Get port from environment and store in Express.
