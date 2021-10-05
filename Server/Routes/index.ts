@@ -53,8 +53,7 @@ router.get('/games-list', function(req, res, next)
       console.error(err);
       res.end(err);
     }
-
-    console.log(gamesCollection);
+    res.render('index', { title: 'Games List', page: 'games-list', games: gamesCollection });
   });
 });
 
