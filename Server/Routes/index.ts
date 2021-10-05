@@ -2,6 +2,9 @@ import express from 'express';
 const router = express.Router();
 export default router;
 
+// get a reference to the Game Model Class
+import Game from '../Models/game';
+
 /* GET home page. */
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'Home', page: 'home' });
@@ -38,4 +41,21 @@ router.get('/resume', function(req, res, next) {
   res.render('index', { title: 'Resume', page: 'resume' });
 });
 
-module.exports = router;
+/* GET games-list */
+router.get('/games-list', function(req, res, next)
+{
+
+  // db.games.find()
+  Game.find(function(err, gamesCollection)
+  {
+    if(err)
+    {
+      console.error(err);
+      res.end(err);
+    }
+
+    console.log(gamesCollection);
+  });
+});
+
+//module.exports = router;

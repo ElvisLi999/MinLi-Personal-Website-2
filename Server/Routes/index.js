@@ -6,6 +6,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const router = express_1.default.Router();
 exports.default = router;
+// get a reference to the Game Model Class
+const game_1 = __importDefault(require("../Models/game"));
 /* GET home page. */
 router.get('/', function (req, res, next) {
     res.render('index', { title: 'Home', page: 'home' });
@@ -34,5 +36,16 @@ router.get('/contact', function (req, res, next) {
 router.get('/resume', function (req, res, next) {
     res.render('index', { title: 'Resume', page: 'resume' });
 });
-module.exports = router;
+/* GET games-list */
+router.get('/games-list', function (req, res, next) {
+    // db.games.find()
+    game_1.default.find(function (err, gamesCollection) {
+        if (err) {
+            console.error(err);
+            res.end(err);
+        }
+        console.log(gamesCollection);
+    });
+});
+//module.exports = router;
 //# sourceMappingURL=index.js.map

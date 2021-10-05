@@ -11,10 +11,29 @@ import path from 'path';
 import cookieParser from 'cookie-parser';
 import logger from 'morgan';
 
+//only import mongo I need
+import mongoose, {mongo } from 'mongoose';
+
 import indexRouter from '../Routes/index';
 
 const app = express();
 export default app;
+
+// DB Configuration
+import * as DBConfig from './db';
+mongoose.connect(DBConfig.LocalURI, {useNewUrlParser: true, useUnifiedTopology: true});
+
+const db = mongoose.connection; // alias for the mongoose connection
+db.on("error", function()
+{
+  console.error("Connection Error");
+});
+
+db.once("open", function()
+{
+  console.log(`Connected to MongoDB at: ${DBConfig.HostName}`);
+});
+
 
 // view engine setup
 app.set('views', path.join(__dirname, '../Views'));
@@ -45,4 +64,4 @@ app.use(function(err:createError.HttpError, req:express.Request, res:express.Res
   res.render('error', {title: 'Error'});
 });
 
-module.exports = app;
+//module.exports = app;
