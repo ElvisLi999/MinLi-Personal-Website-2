@@ -6,46 +6,23 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const router = express_1.default.Router();
 exports.default = router;
-// get a reference to the Game Model Class
-const game_1 = __importDefault(require("../Models/game"));
+// instantiate an object of type index controller
+const index_1 = require("../Controllers/index");
 /* GET home page. */
-router.get('/', function (req, res, next) {
-    res.render('index', { title: 'Home', page: 'home' });
-});
+router.get('/', index_1.DisplayHomePage);
 /* GET home page. */
-router.get('/home', function (req, res, next) {
-    res.render('index', { title: 'Home', page: 'home' });
-});
+router.get('/home', index_1.DisplayHomePage);
 /* GET About Us page. */
-router.get('/about', function (req, res, next) {
-    res.render('index', { title: 'About', page: 'about' });
-});
+router.get('/about', index_1.DisplayAboutPage);
 /* GET Projects page. */
-router.get('/projects', function (req, res, next) {
-    res.render('index', { title: 'Projects', page: 'projects' });
-});
+router.get('/projects', index_1.DisplayProjectsPage);
 /* GET Services page. */
-router.get('/services', function (req, res, next) {
-    res.render('index', { title: 'Services', page: 'services' });
-});
+router.get('/services', index_1.DisplayServicesPage);
 /* GET Contact Us page. */
-router.get('/contact', function (req, res, next) {
-    res.render('index', { title: 'Contact Me', page: 'contact' });
-});
+router.get('/contact', index_1.DisplayContactPage);
 /* GET Resume page. */
-router.get('/resume', function (req, res, next) {
-    res.render('index', { title: 'Resume', page: 'resume' });
-});
+router.get('/resume', index_1.DisplayResumePage);
 /* GET games-list */
-router.get('/games-list', function (req, res, next) {
-    // db.games.find()
-    game_1.default.find(function (err, gamesCollection) {
-        if (err) {
-            console.error(err);
-            res.end(err);
-        }
-        res.render('index', { title: 'Games List', page: 'games-list', games: gamesCollection });
-    });
-});
+router.get('/games-list', index_1.DisplayGamesListPage);
 //module.exports = router;
 //# sourceMappingURL=index.js.map
