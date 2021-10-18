@@ -3,7 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.DisplayGamesListPage = exports.DisplayResumePage = exports.DisplayContactPage = exports.DisplayServicesPage = exports.DisplayProjectsPage = exports.DisplayAboutPage = exports.DisplayHomePage = void 0;
+exports.DisplayEditPage = exports.DisplayGamesListPage = exports.DisplayResumePage = exports.DisplayContactPage = exports.DisplayServicesPage = exports.DisplayProjectsPage = exports.DisplayAboutPage = exports.DisplayHomePage = void 0;
 // get a reference to the Game Model Class
 const game_1 = __importDefault(require("../Models/game"));
 function DisplayHomePage(req, res, next) {
@@ -30,6 +30,7 @@ function DisplayResumePage(req, res, next) {
     res.render('index', { title: 'Resume', page: 'resume' });
 }
 exports.DisplayResumePage = DisplayResumePage;
+//(R)ead in CRUD
 function DisplayGamesListPage(req, res, next) {
     // db.games.find()
     game_1.default.find(function (err, gamesCollection) {
@@ -37,8 +38,24 @@ function DisplayGamesListPage(req, res, next) {
             console.error(err);
             res.end(err);
         }
-        res.render('index', { title: 'Games List', page: 'games-list', games: gamesCollection });
+        res.render('index', { title: 'Games', page: 'games-list', games: gamesCollection });
     });
 }
 exports.DisplayGamesListPage = DisplayGamesListPage;
+// Display (E)dit page
+function DisplayEditPage(req, res, next) {
+    let id = req.params.id;
+    // pass the id to the db
+    // db.games.find({"_id": id})
+    game_1.default.findById(id, {}, {}, (err, gamesItemToEdit) => {
+        if (err) {
+            console.error(err);
+            res.end(err);
+        }
+        // show the edit view
+        res.render('index', { title: 'Edit', page: 'edit', games: gamesItemToEdit });
+    });
+}
+exports.DisplayEditPage = DisplayEditPage;
+/* GET Route for displaying the Add page - CREATE Operation */
 //# sourceMappingURL=index.js.map

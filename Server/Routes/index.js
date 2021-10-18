@@ -22,7 +22,9 @@ router.get('/services', index_1.DisplayServicesPage);
 router.get('/contact', index_1.DisplayContactPage);
 /* GET Resume page. */
 router.get('/resume', index_1.DisplayResumePage);
-/* GET games-list */
+/* GET games-list page */
 router.get('/games-list', index_1.DisplayGamesListPage);
+/* GET - display /games-list/edit/:id page. */
+router.get('/games-list/edit/:id', index_1.DisplayEditPage);
 //module.exports = router;
 //# sourceMappingURL=index.js.map

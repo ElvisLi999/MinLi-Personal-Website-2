@@ -30,7 +30,7 @@
           </li>
   
           <li class="nav-item">
-          <% if (title == "Products") { %>
+          <% if (title == "Projects") { %>
             <a class="nav-link active"
           <% } else { %>
             <a class="nav-link"
@@ -48,13 +48,22 @@
           </li>
           
           <li class="nav-item">
-          <% if (title == "Contact Us") { %>
+          <% if (title == "Contact Me") { %>
             <a class="nav-link active"
           <% } else { %>
             <a class="nav-link"
           <% } %>
             href="/contact"><i class="fas fa-lg fa-cogs"></i>Contact Me</a>
           </li>
+
+          <li class="nav-item">
+          <% if (title == "Games") { %>
+            <a class="nav-link active"
+          <% } else { %>
+            <a class="nav-link"
+          <% } %>
+            href="/games-list"><i class="fas fa-gamepad"></i>Games</a>
+          </li>          
   
       </div>
     </div>

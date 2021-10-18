@@ -36,11 +36,13 @@ const morgan_1 = __importDefault(require("morgan"));
 //only import mongo I need
 const mongoose_1 = __importDefault(require("mongoose"));
 const index_1 = __importDefault(require("../Routes/index"));
+//Express Web App Configuration
 const app = (0, express_1.default)();
-exports.default = app;
+exports.default = app; // exports app as the default Object for this module
 // DB Configuration
 const DBConfig = __importStar(require("./db"));
-mongoose_1.default.connect(DBConfig.RemoteURI, { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose_1.default.connect(DBConfig.LocalURI, { useNewUrlParser: true, useUnifiedTopology: true });
+//mongoose.connect(DBConfig.RemoteURI, {useNewUrlParser: true, useUnifiedTopology: true});
 const db = mongoose_1.default.connection; // alias for the mongoose connection
 db.on("error", function () {
     console.error("Connection Error");

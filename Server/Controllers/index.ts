@@ -34,7 +34,7 @@ export function DisplayResumePage(req: Request, res: Response, next: NextFunctio
     res.render('index', { title: 'Resume', page: 'resume' });
 }
 
-
+//(R)ead in CRUD
 export function DisplayGamesListPage(req: Request, res: Response, next: NextFunction): void
 {
     // db.games.find()
@@ -46,7 +46,33 @@ export function DisplayGamesListPage(req: Request, res: Response, next: NextFunc
       res.end(err);
     }
 
-    res.render('index', { title: 'Games List', page: 'games-list', games: gamesCollection  });
+    res.render('index', { title: 'Games', page: 'games-list', games: gamesCollection  });
 
   });
 }
+
+
+// Display (E)dit page
+export function DisplayEditPage(req: Request, res: Response, next: NextFunction): void
+{
+    let id = req.params.id;
+
+    // pass the id to the db
+
+    // db.games.find({"_id": id})
+
+    Game.findById(id, {}, {}, (err, gamesItemToEdit) => 
+    {
+        if(err)
+        {
+            console.error(err);
+            res.end(err);
+        }
+
+        // show the edit view
+        res.render('index', { title: 'Edit', page: 'edit', games: gamesItemToEdit  });
+    });
+}
+
+
+/* GET Route for displaying the Add page - CREATE Operation */
