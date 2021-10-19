@@ -74,9 +74,16 @@ export function DisplayEditPage(req: Request, res: Response, next: NextFunction)
     });
 }
 
+/* functions for authentication */
+
 export function DisplayLoginPage(req: Request, res: Response, next: NextFunction): void
 {
     res.render('index', { title: 'Login', page: 'login' });
+}
+
+export function DisplayRegisterPage(req: Request, res: Response, next: NextFunction): void
+{
+    res.render('index', { title: 'Register', page: 'register'  });
 }
 
 /* GET Route for displaying the Add page - CREATE Operation */
