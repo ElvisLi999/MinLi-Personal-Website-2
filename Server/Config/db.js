@@ -4,6 +4,6 @@ exports.Secret = exports.HostName = exports.RemoteURI = exports.LocalURI = void 
 exports.LocalURI = "mongodb://localhost/store";
 exports.RemoteURI = process.env.RemoteURI;
 //localhost: connect to local database; remotehost: connect to cloud database
-exports.HostName = "localhost";
+exports.HostName = (process.env.RemoteURI) ? "remotehost" : "localhost";
 exports.Secret = "someSecret";
 //# sourceMappingURL=db.js.map

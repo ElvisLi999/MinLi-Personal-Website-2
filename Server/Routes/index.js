@@ -26,5 +26,7 @@ router.get('/resume', index_1.DisplayResumePage);
 router.get('/games-list', index_1.DisplayGamesListPage);
 /* GET - display /games-list/edit/:id page. */
 router.get('/games-list/edit/:id', index_1.DisplayEditPage);
+/* GET -  login page */
+router.get('/login', index_1.DisplayLoginPage);
 //module.exports = router;
 //# sourceMappingURL=index.js.map

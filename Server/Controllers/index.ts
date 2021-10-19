@@ -74,5 +74,9 @@ export function DisplayEditPage(req: Request, res: Response, next: NextFunction)
     });
 }
 
+export function DisplayLoginPage(req: Request, res: Response, next: NextFunction): void
+{
+    res.render('index', { title: 'Login', page: 'login' });
+}
 
 /* GET Route for displaying the Add page - CREATE Operation */
