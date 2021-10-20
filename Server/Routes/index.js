@@ -8,6 +8,8 @@ const router = express_1.default.Router();
 exports.default = router;
 // instantiate an object of type index controller
 const index_1 = require("../Controllers/index");
+// import Util Functions
+const index_2 = require("../Util/index");
 /* GET home page. */
 router.get('/', index_1.DisplayHomePage);
 /* GET home page. */
@@ -21,19 +23,19 @@ router.get('/services', index_1.DisplayServicesPage);
 /* GET Contact Us page. */
 router.get('/contact', index_1.DisplayContactPage);
 /* GET Resume page. */
-router.get('/resume', index_1.DisplayResumePage);
+router.get('/resume', index_2.AuthGuard, index_1.DisplayResumePage);
 /* GET games-list page */
 router.get('/games-list', index_1.DisplayGamesListPage);
 /* GET - display /games-list/edit/:id page. */
 router.get('/games-list/edit/:id', index_1.DisplayEditPage);
 /* GET contacts-list page */
-router.get('/contacts-list', index_1.DisplayContactsListPage);
+router.get('/contacts-list', index_2.AuthGuard, index_1.DisplayContactsListPage);
 /* GET - display /contacts-list/update/:id page. */
-router.get('/contacts-list/update/:id', index_1.DisplayUpdatePage);
+router.get('/contacts-list/update/:id', index_2.AuthGuard, index_1.DisplayUpdatePage);
 /* POST - process /contacts-list/update/:id page. */
-router.post('/contacts-list/update/:id', index_1.ProcessUpdatePage);
+router.post('/contacts-list/update/:id', index_2.AuthGuard, index_1.ProcessUpdatePage);
 /* GET - process /contacts-list/delete/:id. */
-router.get('/contacts-list/delete/:id', index_1.ProcessDeletePage);
+router.get('/contacts-list/delete/:id', index_2.AuthGuard, index_1.ProcessDeletePage);
 /* GET - display login page */
 router.get('/login', index_1.DisplayLoginPage);
 /* POST process login page */

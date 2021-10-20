@@ -5,6 +5,9 @@ export default router;
 // instantiate an object of type index controller
 import { DisplayAboutPage, DisplayContactPage, DisplayGamesListPage, DisplayHomePage, DisplayProjectsPage, DisplayServicesPage, DisplayResumePage, DisplayEditPage, DisplayLoginPage, DisplayRegisterPage, ProcessLoginPage, ProcessLogoutPage, ProcessRegisterPage, DisplayContactsListPage, DisplayUpdatePage, ProcessUpdatePage, ProcessDeletePage } from '../Controllers/index';
 
+// import Util Functions
+import { AuthGuard } from '../Util/index';
+
 /* GET home page. */
 router.get('/', DisplayHomePage);
 
@@ -24,7 +27,7 @@ router.get('/services', DisplayServicesPage);
 router.get('/contact', DisplayContactPage);
 
 /* GET Resume page. */
-router.get('/resume', DisplayResumePage);
+router.get('/resume', AuthGuard, DisplayResumePage);
 
 /* GET games-list page */
 router.get('/games-list', DisplayGamesListPage);
@@ -34,16 +37,16 @@ router.get('/games-list', DisplayGamesListPage);
 router.get('/games-list/edit/:id', DisplayEditPage);
 
 /* GET contacts-list page */
-router.get('/contacts-list', DisplayContactsListPage);
+router.get('/contacts-list', AuthGuard, DisplayContactsListPage);
 
 /* GET - display /contacts-list/update/:id page. */
-router.get('/contacts-list/update/:id', DisplayUpdatePage);
+router.get('/contacts-list/update/:id', AuthGuard, DisplayUpdatePage);
 
 /* POST - process /contacts-list/update/:id page. */
-router.post('/contacts-list/update/:id', ProcessUpdatePage);
+router.post('/contacts-list/update/:id', AuthGuard, ProcessUpdatePage);
 
 /* GET - process /contacts-list/delete/:id. */
-router.get('/contacts-list/delete/:id', ProcessDeletePage);
+router.get('/contacts-list/delete/:id', AuthGuard, ProcessDeletePage);
 
 /* GET - display login page */
 router.get('/login', DisplayLoginPage);
