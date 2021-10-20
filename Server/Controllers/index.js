@@ -150,7 +150,7 @@ function ProcessLoginPage(req, res, next) {
                 return next(err);
             }
             console.log("Logged in Successfully");
-            return res.redirect('/games-list');
+            return res.redirect('/contacts-list');
         });
     })(req, res, next);
 }
@@ -177,7 +177,7 @@ function ProcessRegisterPage(req, res, next) {
         }
         // after successful registration - let's login the user
         return passport_1.default.authenticate('local')(req, res, () => {
-            return res.redirect('/games-list');
+            return res.redirect('/contacts-list');
         });
     });
 }

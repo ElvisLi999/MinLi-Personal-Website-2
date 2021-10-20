@@ -206,7 +206,7 @@ export function ProcessLoginPage(req: Request, res: Response, next: NextFunction
 
       console.log("Logged in Successfully");
 
-      return res.redirect('/games-list');
+      return res.redirect('/contacts-list');
     });
   })(req, res, next);
 }
@@ -243,7 +243,7 @@ export function ProcessRegisterPage(req: Request, res: Response, next: NextFunct
     // after successful registration - let's login the user
     return passport.authenticate('local')(req, res, () =>
     {
-      return res.redirect('/games-list');
+      return res.redirect('/contacts-list');
     });
   });
 }
