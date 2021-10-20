@@ -11,34 +11,39 @@ import Game from '../Models/game';
 // get a reference to the Contact Model Class
 import Contact from '../Models/contact';
 
+// import Util Functions
+import { UserDisplayName } from '../Util';
+
+//Display and Process functions
+
 export function DisplayHomePage(req: Request, res: Response, next: NextFunction): void
 {
-    res.render('index', { title: 'Home', page: 'home' });
+    res.render('index', { title: 'Home', page: 'home', displayName: UserDisplayName(req) });
 }
 
 export function DisplayAboutPage(req: Request, res: Response, next: NextFunction): void
 {
-    res.render('index', { title: 'About', page: 'about' });
+    res.render('index', { title: 'About', page: 'about', displayName: UserDisplayName(req) });
 }
 
 export function DisplayProjectsPage(req: Request, res: Response, next: NextFunction): void
 {
-    res.render('index', { title: 'Projects', page: 'projects' });
+    res.render('index', { title: 'Projects', page: 'projects', displayName: UserDisplayName(req) });
 }
 
 export function DisplayServicesPage(req: Request, res: Response, next: NextFunction): void
 {
-    res.render('index', { title: 'Services', page: 'services' });
+    res.render('index', { title: 'Services', page: 'services', displayName: UserDisplayName(req) });
 }
 
 export function DisplayContactPage(req: Request, res: Response, next: NextFunction): void
 {
-    res.render('index', { title: 'Contact Me', page: 'contact' });
+    res.render('index', { title: 'Contact Me', page: 'contact', displayName: UserDisplayName(req) });
 }
 
 export function DisplayResumePage(req: Request, res: Response, next: NextFunction): void
 {
-    res.render('index', { title: 'Resume', page: 'resume' });
+    res.render('index', { title: 'Resume', page: 'resume', displayName: UserDisplayName(req) });
 }
 
 //(R)ead in CRUD
@@ -93,7 +98,7 @@ export function DisplayContactsListPage(req: Request, res: Response, next: NextF
       res.end(err);
     }
 
-    res.render('index', { title: 'Contacts', page: 'contacts-list', contacts: contactsCollection  });
+    res.render('index', { title: 'Contacts', page: 'contacts-list', contacts: contactsCollection, displayName: UserDisplayName(req)  });
 
   });
 }
@@ -116,7 +121,7 @@ export function DisplayUpdatePage(req: Request, res: Response, next: NextFunctio
         }
 
         // show the update view
-        res.render('index', { title: 'Update', page: 'update', contacts: contactsItemToUpdate  });
+        res.render('index', { title: 'Update', page: 'update', contacts: contactsItemToUpdate, displayName: UserDisplayName(req)  });
     });
 }
 
@@ -167,7 +172,7 @@ export function ProcessDeletePage(req: Request, res: Response, next: NextFunctio
 
 export function DisplayLoginPage(req: Request, res: Response, next: NextFunction): void
 {
-    res.render('index', { title: 'Login', page: 'login', messages: req.flash('loginMessage') });
+    res.render('index', { title: 'Login', page: 'login', messages: req.flash('loginMessage'), displayName: UserDisplayName(req) });
 }
 
 export function ProcessLoginPage(req: Request, res: Response, next: NextFunction): void
@@ -208,7 +213,7 @@ export function ProcessLoginPage(req: Request, res: Response, next: NextFunction
 
 export function DisplayRegisterPage(req: Request, res: Response, next: NextFunction): void
 {
-    res.render('index', { title: 'Register', page: 'register'  });
+    res.render('index', { title: 'Register', page: 'register', displayName: UserDisplayName(req)  });
 }
 
 export function ProcessRegisterPage(req: Request, res: Response, next: NextFunction): void
