@@ -8,6 +8,8 @@
                     <th scope="col">Name</th>
                     <th scope="col">Number</th>
                     <th scope="col">Email</th>
+                    <th></th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
@@ -18,6 +20,8 @@
                         <td><%= contacts[count].name %></td>
                         <td><%= contacts[count].contactnumber %></td>
                         <td><%= contacts[count].email %></td>
+                        <td class="text-center"><a href="/contacts-list/update/<%= contacts[count]._id %>" class="btn btn-primary btn-sm update"><i class="fas fa-edit fa-sm"></i> Update</a></td>
+                        <td class="text-center"><a href="/contacts-list/delete/<%= contacts[count]._id %>" class="btn btn-danger btn-sm delete"><i class="fas fa-trash-alt fa-sm"></i> Delete</a></td>
                     </tr>
                 <% } %>
             </tbody>

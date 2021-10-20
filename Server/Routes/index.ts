@@ -3,7 +3,7 @@ const router = express.Router();
 export default router;
 
 // instantiate an object of type index controller
-import { DisplayAboutPage, DisplayContactPage, DisplayGamesListPage, DisplayHomePage, DisplayProjectsPage, DisplayServicesPage, DisplayResumePage, DisplayEditPage, DisplayLoginPage, DisplayRegisterPage, ProcessLoginPage, ProcessLogoutPage, ProcessRegisterPage, DisplayContactsListPage, DisplayUpdatePage } from '../Controllers/index';
+import { DisplayAboutPage, DisplayContactPage, DisplayGamesListPage, DisplayHomePage, DisplayProjectsPage, DisplayServicesPage, DisplayResumePage, DisplayEditPage, DisplayLoginPage, DisplayRegisterPage, ProcessLoginPage, ProcessLogoutPage, ProcessRegisterPage, DisplayContactsListPage, DisplayUpdatePage, ProcessUpdatePage, ProcessDeletePage } from '../Controllers/index';
 
 /* GET home page. */
 router.get('/', DisplayHomePage);
@@ -38,6 +38,12 @@ router.get('/contacts-list', DisplayContactsListPage);
 
 /* GET - display /contacts-list/update/:id page. */
 router.get('/contacts-list/update/:id', DisplayUpdatePage);
+
+/* POST - process /contacts-list/update/:id page. */
+router.post('/contacts-list/update/:id', ProcessUpdatePage);
+
+/* GET - process /contacts-list/delete/:id. */
+router.get('/contacts-list/delete/:id', ProcessDeletePage);
 
 /* GET - display login page */
 router.get('/login', DisplayLoginPage);

@@ -3,7 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ProcessLogoutPage = exports.ProcessRegisterPage = exports.DisplayRegisterPage = exports.ProcessLoginPage = exports.DisplayLoginPage = exports.DisplayUpdatePage = exports.DisplayContactsListPage = exports.DisplayEditPage = exports.DisplayGamesListPage = exports.DisplayResumePage = exports.DisplayContactPage = exports.DisplayServicesPage = exports.DisplayProjectsPage = exports.DisplayAboutPage = exports.DisplayHomePage = void 0;
+exports.ProcessLogoutPage = exports.ProcessRegisterPage = exports.DisplayRegisterPage = exports.ProcessLoginPage = exports.DisplayLoginPage = exports.ProcessDeletePage = exports.ProcessUpdatePage = exports.DisplayUpdatePage = exports.DisplayContactsListPage = exports.DisplayEditPage = exports.DisplayGamesListPage = exports.DisplayResumePage = exports.DisplayContactPage = exports.DisplayServicesPage = exports.DisplayProjectsPage = exports.DisplayAboutPage = exports.DisplayHomePage = void 0;
 const passport_1 = __importDefault(require("passport"));
 // create an instance of the User Model
 const user_1 = __importDefault(require("../Models/user"));
@@ -89,6 +89,39 @@ function DisplayUpdatePage(req, res, next) {
     });
 }
 exports.DisplayUpdatePage = DisplayUpdatePage;
+// Process (U)pdate page
+function ProcessUpdatePage(req, res, next) {
+    let id = req.params.id;
+    // instantiate a new Contact Item
+    let updatedContactItem = new contact_1.default({
+        "_id": id,
+        "name": req.body.name,
+        "contactnumber": req.body.contactnumber,
+        "email": req.body.email
+    });
+    // find the contact item via db.contact.update({"_id":id}) and then update
+    contact_1.default.updateOne({ _id: id }, updatedContactItem, {}, (err) => {
+        if (err) {
+            console.error(err);
+            res.end(err);
+        }
+        res.redirect('/contacts-list');
+    });
+}
+exports.ProcessUpdatePage = ProcessUpdatePage;
+// Process (D)elete page
+function ProcessDeletePage(req, res, next) {
+    let id = req.params.id;
+    // db.contacts.remove({"_id: id"})
+    contact_1.default.remove({ _id: id }, (err) => {
+        if (err) {
+            console.error(err);
+            res.end(err);
+        }
+        res.redirect('/contacts-list');
+    });
+}
+exports.ProcessDeletePage = ProcessDeletePage;
 /* functions for authentication */
 function DisplayLoginPage(req, res, next) {
     res.render('index', { title: 'Login', page: 'login', messages: req.flash('loginMessage') });
