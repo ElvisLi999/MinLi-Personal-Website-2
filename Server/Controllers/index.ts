@@ -8,6 +8,8 @@ import User from '../Models/user';
 // get a reference to the Game Model Class
 import Game from '../Models/game';
 
+// get a reference to the Contact Model Class
+import Contact from '../Models/contact';
 
 export function DisplayHomePage(req: Request, res: Response, next: NextFunction): void
 {
@@ -79,11 +81,28 @@ export function DisplayEditPage(req: Request, res: Response, next: NextFunction)
     });
 }
 
+//(R)ead contacts list in CRUD
+export function DisplayContactsListPage(req: Request, res: Response, next: NextFunction): void
+{
+    // db.contacts.find()
+  Contact.find(function(err, contactsCollection)
+  {
+    if(err)
+    {
+      console.error(err);
+      res.end(err);
+    }
+
+    res.render('index', { title: 'Contacts', page: 'contacts-list', contacts: contactsCollection  });
+
+  });
+}
+
 /* functions for authentication */
 
 export function DisplayLoginPage(req: Request, res: Response, next: NextFunction): void
 {
-    res.render('index', { title: 'Login', page: 'login' });
+    res.render('index', { title: 'Login', page: 'login', messages: req.flash('loginMessage') });
 }
 
 export function ProcessLoginPage(req: Request, res: Response, next: NextFunction): void

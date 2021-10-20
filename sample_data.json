@@ -1,0 +1,8 @@
+{
+    "contacts":
+    [
+        {"name": "Hanqing Liu", "contactnumber": "519-329-4258", "email": "hanqingliu@gmail.com"},
+        {"name": "Henry Tu", "contactnumber": "428-125-1278", "email": "Henrytu@gmail.com"},
+        {"name": "Kylie Jenner", "contactnumber": "226-837-9667", "email": "kyliejenner@gmail.com"}
+    ]
+}

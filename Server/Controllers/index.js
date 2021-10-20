@@ -3,12 +3,14 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ProcessLogoutPage = exports.ProcessRegisterPage = exports.DisplayRegisterPage = exports.ProcessLoginPage = exports.DisplayLoginPage = exports.DisplayEditPage = exports.DisplayGamesListPage = exports.DisplayResumePage = exports.DisplayContactPage = exports.DisplayServicesPage = exports.DisplayProjectsPage = exports.DisplayAboutPage = exports.DisplayHomePage = void 0;
+exports.ProcessLogoutPage = exports.ProcessRegisterPage = exports.DisplayRegisterPage = exports.ProcessLoginPage = exports.DisplayLoginPage = exports.DisplayContactsListPage = exports.DisplayEditPage = exports.DisplayGamesListPage = exports.DisplayResumePage = exports.DisplayContactPage = exports.DisplayServicesPage = exports.DisplayProjectsPage = exports.DisplayAboutPage = exports.DisplayHomePage = void 0;
 const passport_1 = __importDefault(require("passport"));
 // create an instance of the User Model
 const user_1 = __importDefault(require("../Models/user"));
 // get a reference to the Game Model Class
 const game_1 = __importDefault(require("../Models/game"));
+// get a reference to the Contact Model Class
+const contact_1 = __importDefault(require("../Models/contact"));
 function DisplayHomePage(req, res, next) {
     res.render('index', { title: 'Home', page: 'home' });
 }
@@ -60,9 +62,21 @@ function DisplayEditPage(req, res, next) {
     });
 }
 exports.DisplayEditPage = DisplayEditPage;
+//(R)ead contacts list in CRUD
+function DisplayContactsListPage(req, res, next) {
+    // db.contacts.find()
+    contact_1.default.find(function (err, contactsCollection) {
+        if (err) {
+            console.error(err);
+            res.end(err);
+        }
+        res.render('index', { title: 'Contacts', page: 'contacts-list', contacts: contactsCollection });
+    });
+}
+exports.DisplayContactsListPage = DisplayContactsListPage;
 /* functions for authentication */
 function DisplayLoginPage(req, res, next) {
-    res.render('index', { title: 'Login', page: 'login' });
+    res.render('index', { title: 'Login', page: 'login', messages: req.flash('loginMessage') });
 }
 exports.DisplayLoginPage = DisplayLoginPage;
 function ProcessLoginPage(req, res, next) {
