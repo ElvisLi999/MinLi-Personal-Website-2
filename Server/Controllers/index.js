@@ -3,7 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ProcessLogoutPage = exports.ProcessRegisterPage = exports.DisplayRegisterPage = exports.ProcessLoginPage = exports.DisplayLoginPage = exports.DisplayContactsListPage = exports.DisplayEditPage = exports.DisplayGamesListPage = exports.DisplayResumePage = exports.DisplayContactPage = exports.DisplayServicesPage = exports.DisplayProjectsPage = exports.DisplayAboutPage = exports.DisplayHomePage = void 0;
+exports.ProcessLogoutPage = exports.ProcessRegisterPage = exports.DisplayRegisterPage = exports.ProcessLoginPage = exports.DisplayLoginPage = exports.DisplayUpdatePage = exports.DisplayContactsListPage = exports.DisplayEditPage = exports.DisplayGamesListPage = exports.DisplayResumePage = exports.DisplayContactPage = exports.DisplayServicesPage = exports.DisplayProjectsPage = exports.DisplayAboutPage = exports.DisplayHomePage = void 0;
 const passport_1 = __importDefault(require("passport"));
 // create an instance of the User Model
 const user_1 = __importDefault(require("../Models/user"));
@@ -74,6 +74,21 @@ function DisplayContactsListPage(req, res, next) {
     });
 }
 exports.DisplayContactsListPage = DisplayContactsListPage;
+// Display (U)pdate page
+function DisplayUpdatePage(req, res, next) {
+    let id = req.params.id;
+    // pass the id to the db
+    // db.contacts.find({"_id": id})
+    contact_1.default.findById(id, {}, {}, (err, contactsItemToUpdate) => {
+        if (err) {
+            console.error(err);
+            res.end(err);
+        }
+        // show the update view
+        res.render('index', { title: 'Update', page: 'update', contacts: contactsItemToUpdate });
+    });
+}
+exports.DisplayUpdatePage = DisplayUpdatePage;
 /* functions for authentication */
 function DisplayLoginPage(req, res, next) {
     res.render('index', { title: 'Login', page: 'login', messages: req.flash('loginMessage') });

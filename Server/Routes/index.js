@@ -28,6 +28,8 @@ router.get('/games-list', index_1.DisplayGamesListPage);
 router.get('/games-list/edit/:id', index_1.DisplayEditPage);
 /* GET contacts-list page */
 router.get('/contacts-list', index_1.DisplayContactsListPage);
+/* GET - display /contacts-list/update/:id page. */
+router.get('/contacts-list/update/:id', index_1.DisplayUpdatePage);
 /* GET - display login page */
 router.get('/login', index_1.DisplayLoginPage);
 /* POST process login page */

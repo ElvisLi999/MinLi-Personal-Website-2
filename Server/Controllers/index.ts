@@ -98,6 +98,28 @@ export function DisplayContactsListPage(req: Request, res: Response, next: NextF
   });
 }
 
+// Display (U)pdate page
+export function DisplayUpdatePage(req: Request, res: Response, next: NextFunction): void
+{
+    let id = req.params.id;
+
+    // pass the id to the db
+
+    // db.contacts.find({"_id": id})
+
+    Contact.findById(id, {}, {}, (err, contactsItemToUpdate) => 
+    {
+        if(err)
+        {
+            console.error(err);
+            res.end(err);
+        }
+
+        // show the update view
+        res.render('index', { title: 'Update', page: 'update', contacts: contactsItemToUpdate  });
+    });
+}
+
 /* functions for authentication */
 
 export function DisplayLoginPage(req: Request, res: Response, next: NextFunction): void
