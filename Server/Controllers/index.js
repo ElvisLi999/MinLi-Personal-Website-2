@@ -74,7 +74,7 @@ function DisplayContactsListPage(req, res, next) {
             res.end(err);
         }
         res.render('index', { title: 'Contacts', page: 'contacts-list', contacts: contactsCollection, displayName: (0, Util_1.UserDisplayName)(req) });
-    });
+    }).sort({ "name": 1 });
 }
 exports.DisplayContactsListPage = DisplayContactsListPage;
 // Display (U)pdate page

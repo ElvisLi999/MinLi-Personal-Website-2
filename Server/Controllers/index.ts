@@ -100,7 +100,7 @@ export function DisplayContactsListPage(req: Request, res: Response, next: NextF
 
     res.render('index', { title: 'Contacts', page: 'contacts-list', contacts: contactsCollection, displayName: UserDisplayName(req)  });
 
-  });
+  }).sort({"name": 1});
 }
 
 // Display (U)pdate page
