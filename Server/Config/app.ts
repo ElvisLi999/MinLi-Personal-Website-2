@@ -11,6 +11,23 @@ import path from 'path';
 import cookieParser from 'cookie-parser';
 import logger from 'morgan';
 
+// authentication modules
+import session from 'express-session';
+import passport from 'passport';
+import passportLocal from 'passport-local';
+
+// modules for cors
+import cors from 'cors';
+
+// authentication objects
+let localStrategy = passportLocal.Strategy; // alias
+import User from '../Models/user';
+
+// module for auth messaging and error management
+import flash from 'connect-flash';
+
+//database setup
+
 //only import mongo I need
 import mongoose, {mongo } from 'mongoose';
 
@@ -47,6 +64,30 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, '../../Client')));
 app.use(express.static(path.join(__dirname, '../../node_modules')));
+
+// add support for cors object
+app.use(cors());
+
+// setup express session
+app.use(session({
+  secret: DBConfig.Secret,
+  saveUninitialized: false,
+  resave: false
+}));
+
+// initialize connect-flash
+app.use(flash());
+
+// initialize passport
+app.use(passport.initialize());
+app.use(passport.session());
+
+// implement an Auth Strategy - "local" - username / password
+passport.use(User.createStrategy());
+
+// serialize and deserialize user data
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
 
 app.use('/', indexRouter);
 

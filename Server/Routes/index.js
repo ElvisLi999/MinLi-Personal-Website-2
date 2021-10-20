@@ -26,9 +26,15 @@ router.get('/resume', index_1.DisplayResumePage);
 router.get('/games-list', index_1.DisplayGamesListPage);
 /* GET - display /games-list/edit/:id page. */
 router.get('/games-list/edit/:id', index_1.DisplayEditPage);
-/* GET -  login page */
+/* GET - display login page */
 router.get('/login', index_1.DisplayLoginPage);
+/* POST process login page */
+router.post('/login', index_1.ProcessLoginPage);
 /* GET display register page */
 router.get('/register', index_1.DisplayRegisterPage);
+/* POST process register page */
+router.post('/register', index_1.ProcessRegisterPage);
+/* GET logout page */
+router.get('/logout', index_1.ProcessLogoutPage);
 //module.exports = router;
 //# sourceMappingURL=index.js.map
