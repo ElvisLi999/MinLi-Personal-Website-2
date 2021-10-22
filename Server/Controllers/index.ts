@@ -5,9 +5,6 @@ import passport from 'passport';
 // create an instance of the User Model
 import User from '../Models/user';
 
-// get a reference to the Game Model Class
-import Game from '../Models/game';
-
 // get a reference to the Contact Model Class
 import Contact from '../Models/contact';
 
@@ -46,45 +43,6 @@ export function DisplayResumePage(req: Request, res: Response, next: NextFunctio
     res.render('index', { title: 'Resume', page: 'resume', displayName: UserDisplayName(req) });
 }
 
-//(R)ead in CRUD
-export function DisplayGamesListPage(req: Request, res: Response, next: NextFunction): void
-{
-    // db.games.find()
-  Game.find(function(err, gamesCollection)
-  {
-    if(err)
-    {
-      console.error(err);
-      res.end(err);
-    }
-
-    res.render('index', { title: 'Games', page: 'games-list', games: gamesCollection  });
-
-  });
-}
-
-
-// Display (E)dit page
-export function DisplayEditPage(req: Request, res: Response, next: NextFunction): void
-{
-    let id = req.params.id;
-
-    // pass the id to the db
-
-    // db.games.find({"_id": id})
-
-    Game.findById(id, {}, {}, (err, gamesItemToEdit) => 
-    {
-        if(err)
-        {
-            console.error(err);
-            res.end(err);
-        }
-
-        // show the edit view
-        res.render('index', { title: 'Edit', page: 'edit', games: gamesItemToEdit  });
-    });
-}
 
 //(R)ead contacts list in CRUD
 export function DisplayContactsListPage(req: Request, res: Response, next: NextFunction): void

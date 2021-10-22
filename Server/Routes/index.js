@@ -24,10 +24,6 @@ router.get('/services', index_1.DisplayServicesPage);
 router.get('/contact', index_1.DisplayContactPage);
 /* GET Resume page. */
 router.get('/resume', index_2.AuthGuard, index_1.DisplayResumePage);
-/* GET games-list page */
-router.get('/games-list', index_1.DisplayGamesListPage);
-/* GET - display /games-list/edit/:id page. */
-router.get('/games-list/edit/:id', index_1.DisplayEditPage);
 /* GET contacts-list page */
 router.get('/contacts-list', index_2.AuthGuard, index_1.DisplayContactsListPage);
 /* GET - display /contacts-list/update/:id page. */
